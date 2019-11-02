@@ -23,11 +23,11 @@ class Connector: NSObject {
     super.init()
 
     if let routerURL = URL(string: routerURL) {
-      loadCaptivePortalRouterPage(url: routerURL, webView: webView)
+      loadCaptivePortalRouterPage(url: routerURL, into: webView)
     }
   }
 
-  func loadCaptivePortalRouterPage(url: URL, webView: WKWebView) {
+  private func loadCaptivePortalRouterPage(url: URL, into webView: WKWebView) {
     let request = URLRequest(url: url,
                              cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                              timeoutInterval: timeout)
@@ -36,7 +36,7 @@ class Connector: NSObject {
     webView.load(request)
   }
 
-  func destruction(timeout: TimeInterval) {
+  private func destruction(timeout: TimeInterval) {
     exiter.cancel()
     exiter = DispatchWorkItem(block: { exit(0) })
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(timeout)), execute: exiter)
