@@ -23,11 +23,11 @@ class Connector: NSObject {
     super.init()
 
     if let routerURL = URL(string: routerURL) {
-      loadRouterPage(url: routerURL, webView: webView)
+      loadCaptivePortalRouterPage(url: routerURL, webView: webView)
     }
   }
 
-  func loadRouterPage(url: URL, webView: WKWebView) {
+  func loadCaptivePortalRouterPage(url: URL, webView: WKWebView) {
     let request = URLRequest(url: url,
                              cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                              timeoutInterval: timeout)
