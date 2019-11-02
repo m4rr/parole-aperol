@@ -11,26 +11,35 @@ import WebKit
 
 class Connector: NSObject {
 
-  private let url = "http://192.168.5.1/"
-  private let login = "thepier"
-  private let passw = "076381847"
-
   let webView = WKWebView()
-  var killTiming = DispatchWorkItem(block: {})
+
+  private let routerURL = "http://192.168.5.1/"
+  private let login = "thepier"
+  private let password = "076381847"
+  private let timeout: TimeInterval = 5
+  private var exiter = DispatchWorkItem(block: {})
 
   override init() {
     super.init()
 
-    dologin2()
+    if let routerURL = URL(string: routerURL) {
+      loadRouterPage(url: routerURL, webView: webView)
+    }
   }
 
-  func dologin2() {
-    let rq = URLRequest(url: URL(string: url)!,
-                        cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
-                        timeoutInterval: 5)
+  func loadRouterPage(url: URL, webView: WKWebView) {
+    let request = URLRequest(url: url,
+                             cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                             timeoutInterval: timeout)
 
     webView.navigationDelegate = self
-    webView.load(rq)
+    webView.load(request)
+  }
+
+  func destruction(timeout: TimeInterval) {
+    exiter.cancel()
+    exiter = DispatchWorkItem(block: { exit(0) })
+    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(timeout)), execute: exiter)
   }
 
 }
@@ -38,13 +47,10 @@ class Connector: NSObject {
 extension Connector: WKNavigationDelegate {
 
   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-    killTiming.cancel()
-    killTiming = DispatchWorkItem(block: { exit(0) })
-    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: killTiming)
+    self.destruction(timeout: timeout)
 
-    webView.evaluateJavaScript("document.login.username.value=\"\(login)\"; document.login.password.value=\"\(self.passw)\"; doLogin();") { (aaa, err) in
-      print(aaa ?? "", err ?? "")
-    }
+    webView.evaluateJavaScript("document.login.username.value='\(login)'; document.login.password.value='\(password)'; doLogin();",
+      completionHandler: nil)
   }
 
 }

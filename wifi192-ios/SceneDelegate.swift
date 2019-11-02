@@ -9,23 +9,21 @@
 import UIKit
 import SwiftUI
 
-class ViewWrapper: UIViewController {
-  let v: UIView
+class WrapViewController: UIViewController {
+  required init?(coder: NSCoder) { fatalError() }
 
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  let wrapView: UIView
 
-  init(v: UIView) {
-    self.v = v
+  init(_ v: UIView) {
+    self.wrapView = v
+
     super.init(nibName: nil, bundle: nil)
   }
 
   override func loadView() {
-    view = v
+    view = wrapView
   }
 }
-
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -44,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Use a UIHostingController as window root view controller.
     if let windowScene = scene as? UIWindowScene {
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ViewWrapper(v: contentView) // UIHostingController(rootView: contentView)
+        window.rootViewController = WrapViewController(contentView) // UIHostingController(rootView: contentView)
         self.window = window
         window.makeKeyAndVisible()
     }
