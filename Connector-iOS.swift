@@ -13,7 +13,7 @@ class ConnectorViewController: UIViewController {
   private let cnt = Connector()
 
   override func loadView() {
-    view = cnt.webView
+    view = cnt.view
   }
 
   init() {
