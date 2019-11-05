@@ -20,6 +20,7 @@
 		03133ACD236C283700E86E0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03133ACB236C283700E86E0F /* LaunchScreen.storyboard */; };
 		03133AD3236C285D00E86E0F /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03133AD2236C285D00E86E0F /* Connector.swift */; };
 		03133AD4236C285D00E86E0F /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03133AD2236C285D00E86E0F /* Connector.swift */; };
+		039642FA2371C78E00489D14 /* Connector-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039642F92371C78E00489D14 /* Connector-iOS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		03133ACC236C283700E86E0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03133ACE236C283700E86E0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03133AD2236C285D00E86E0F /* Connector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
+		039642F92371C78E00489D14 /* Connector-iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connector-iOS.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				03133AD2236C285D00E86E0F /* Connector.swift */,
+				039642F92371C78E00489D14 /* Connector-iOS.swift */,
 				0312DFF9236B233100A8DD2B /* wifi192 */,
 				03133ABF236C283600E86E0F /* wifi192-ios */,
 				0312DFF8236B233100A8DD2B /* Products */,
@@ -238,6 +241,7 @@
 				03133AC1236C283600E86E0F /* AppDelegate.swift in Sources */,
 				03133AD4236C285D00E86E0F /* Connector.swift in Sources */,
 				03133AC3236C283600E86E0F /* SceneDelegate.swift in Sources */,
+				039642FA2371C78E00489D14 /* Connector-iOS.swift in Sources */,
 				03133AC5236C283600E86E0F /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,7 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1010;
+				CURRENT_PROJECT_VERSION = 1011;
 				DEVELOPMENT_ASSET_PATHS = "\"wifi192-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = Y5P7AX9UM2;
 				ENABLE_PREVIEWS = YES;
@@ -447,7 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1010;
+				CURRENT_PROJECT_VERSION = 1011;
 				DEVELOPMENT_ASSET_PATHS = "\"wifi192-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = Y5P7AX9UM2;
 				ENABLE_PREVIEWS = YES;

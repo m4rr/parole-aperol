@@ -11,7 +11,7 @@ import WebKit
 
 class Connector: NSObject {
 
-  let webView = WKWebView()
+  let view = WKWebView()
 
   private let routerURL = "http://192.168.5.1/"
   private let login = "thepier"
@@ -23,7 +23,7 @@ class Connector: NSObject {
     super.init()
 
     if let routerURL = URL(string: routerURL) {
-      loadCaptivePortalRouterPage(url: routerURL, into: webView)
+      loadCaptivePortalRouterPage(url: routerURL, into: view)
     }
   }
 
@@ -38,8 +38,11 @@ class Connector: NSObject {
 
   private func destruction(timeout: TimeInterval) {
     exiter.cancel()
-    exiter = DispatchWorkItem(block: { exit(0) })
-    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(timeout)), execute: exiter)
+    exiter = DispatchWorkItem {
+      exit(0)
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(timeout)),
+                                  execute: exiter)
   }
 
 }
@@ -51,6 +54,10 @@ extension Connector: WKNavigationDelegate {
 
     webView.evaluateJavaScript("document.login.username.value='\(login)'; document.login.password.value='\(password)'; doLogin();",
       completionHandler: nil)
+  }
+
+  func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    self.destruction(timeout: timeout)
   }
 
 }

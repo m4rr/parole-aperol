@@ -14,12 +14,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   var window: NSWindow!
 
-  let conn = Connector()
+  let cnt = Connector()
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
 
     // Create the SwiftUI view that provides the window contents.
-    let contentView = conn.webView // ContentView()
+//    let contentView = ContentView()
 
     // Create the window and set the content view. 
     window = NSWindow(
@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       backing: .buffered, defer: false)
     window.center()
     window.setFrameAutosaveName("Main Window")
-    window.contentView = contentView // NSHostingView(rootView: contentView)
+    window.contentView = cnt.view // NSHostingView(rootView: contentView)
     window.makeKeyAndOrderFront(nil)
   }
 
